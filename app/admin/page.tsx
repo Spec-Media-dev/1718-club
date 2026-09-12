@@ -3,17 +3,23 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { Check, ImagePlus, LogOut, RefreshCw, Trash2, Upload, X } from 'lucide-react'
 import { createClient } from '../../lib/supabase/client'
+import type { SupabaseClient } from '@supabase/supabase-js'
 import styles from './admin.module.css'
 
 type Media = { id:string; slot_key:string; title:string; description:string|null; storage_path:string|null; public_url:string|null; alt_text:string|null; active:boolean; sort_order:number; updated_at:string }
 const DEFAULT_SLOTS = ['splash_hero','home_matcha','product_matcha','product_spanish_latte','product_cascara_orange','reward_free_drink','reward_secret_menu','reward_credit','brand_story','club_hero','profile_mascot']
 
 export default function AdminPage(){
-  const supabase=createClient()
+  const [supabase,setSupabase]=useState<SupabaseClient|null>(null)
   const [loading,setLoading]=useState(true); const [authorized,setAuthorized]=useState(false); const [email,setEmail]=useState(''); const [sent,setSent]=useState(false); const [error,setError]=useState(''); const [media,setMedia]=useState<Media[]>([]); const [notice,setNotice]=useState(''); const [activeTab,setActiveTab]=useState('Media');
   const [form,setForm]=useState({slot_key:'',title:'',description:'',alt_text:''}); const [file,setFile]=useState<File|null>(null); const [saving,setSaving]=useState(false)
 
+  useEffect(()=>{
+    try { setSupabase(createClient()) } catch(err) { setError(err instanceof Error ? err.message : 'Supabase environment variables are not configured.'); setLoading(false) }
+  },[])
+
   async function load(){
+    if(!supabase)return
     setLoading(true); setError('')
     const {data:{session}}=await supabase.auth.getSession()
     if(!session){setAuthorized(false);setLoading(false);return}
@@ -24,16 +30,16 @@ export default function AdminPage(){
     if(mediaError)setError(mediaError.message); else setMedia(data??[])
     setLoading(false)
   }
-  useEffect(()=>{load()},[])
+  useEffect(()=>{if(supabase)load()},[supabase])
 
-  async function signIn(e:FormEvent){e.preventDefault();setError('');setNotice('');
+  async function signIn(e:FormEvent){e.preventDefault();if(!supabase)return;setError('');setNotice('');
     const {error}=await supabase.auth.signInWithOtp({email:email.trim(),options:{emailRedirectTo:`${window.location.origin}/admin`}})
     if(error)setError(error.message);else setSent(true)
   }
-  async function signOut(){await supabase.auth.signOut();setAuthorized(false);setSent(false)}
+  async function signOut(){if(!supabase)return;await supabase.auth.signOut();setAuthorized(false);setSent(false)}
   function pick(e:ChangeEvent<HTMLInputElement>){setFile(e.target.files?.[0]??null)}
 
-  async function saveMedia(e:FormEvent){e.preventDefault();setSaving(true);setError('');setNotice('')
+  async function saveMedia(e:FormEvent){e.preventDefault();if(!supabase)return;setSaving(true);setError('');setNotice('')
     try{
       if(!form.slot_key.trim()||!form.title.trim()) throw new Error('Slot key and title are required.')
       if(!file) throw new Error('Choose an image first.')
@@ -54,7 +60,7 @@ export default function AdminPage(){
       const input=document.getElementById('media-file') as HTMLInputElement|null;if(input)input.value=''
     }catch(err){setError(err instanceof Error?err.message:'Unable to save photo.')}finally{setSaving(false)}
   }
-  async function remove(m:Media){if(!confirm(`Delete “${m.title}”?`))return;setError('');setNotice('');
+  async function remove(m:Media){if(!supabase)return;if(!confirm(`Delete “${m.title}”?`))return;setError('');setNotice('');
     const {error}=await supabase.from('cms_media').delete().eq('id',m.id); if(error){setError(error.message);return}
     if(m.storage_path)await supabase.storage.from('1718-media').remove([m.storage_path]);setMedia(prev=>prev.filter(x=>x.id!==m.id));setNotice('Photo removed. The app will fall back to its built-in artwork.')
   }
