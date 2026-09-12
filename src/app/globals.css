@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+:root { background: #171614; color: #f3eee5; }
+* { box-sizing: border-box; }
+html { background: #171614; }
+body { margin: 0; background: #171614; font-family: Arial, Helvetica, sans-serif; }
+.font-serif { font-family: Georgia, "Times New Roman", serif; }
+::selection { background: #d8c9b0; color: #171614; }
