@@ -3,6 +3,7 @@ import './globals.css';
 import './brand.css';
 import './mockup.css';
 import './typography.css';
+import './cms.css';
 
 export const metadata: Metadata = {
   title: '1718 CLUB — More than coffee.',
