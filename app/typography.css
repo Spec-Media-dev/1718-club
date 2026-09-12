@@ -1,0 +1,4 @@
+/* 1718 Club typography: Recoleta headings, Lucida Calligraphy highlights, Inter body */
+body,.app-shell,button,input,textarea,select{font-family:'Inter',Arial,sans-serif!important}
+.welcome h1,.page-header h1,.section-title h2,.hero-copy h2,.brand-story h2,.club-card-mid strong,.points-banner strong,.reward-copy h3,.club-hero h2,.profile-head h2,.big-card strong,.sheet-content h2,.parrot-note span,.join-card h1,.splash-copy h1,.app-shell:before{font-family:'Recoleta','Iowan Old Style','Baskerville',Georgia,serif!important}
+.welcome h1 em,.page-header h1 em,.section-title h2 em,.hero-copy h2 em,.brand-story h2 em,.club-hero h2 em,.reward-copy h3 em,.profile-head h2 em,.sheet-content h2 em,.parrot-note span em,.join-card h1 em,.splash-copy h1 em{font-family:'Lucida Calligraphy','URW Chancery L',cursive!important;font-style:normal!important;font-weight:400!important;letter-spacing:-.02em}
