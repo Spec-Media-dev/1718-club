@@ -1,0 +1,17 @@
+/* Live CMS image slots. The customer UI keeps its built-in artwork as a fallback. */
+.app-shell:before{background-image:linear-gradient(180deg,rgba(0,20,20,.3),rgba(0,15,16,.9)),url('/api/media/splash_hero')!important}
+.hero-image{background-image:linear-gradient(100deg,rgba(255,255,255,.12),rgba(255,255,255,0) 58%),url('/api/media/home_matcha')!important;background-size:cover;background-position:center!important}
+.hero-image .drink-art{display:none}
+.product-photo.matcha{background-image:linear-gradient(rgba(10,45,42,.08),rgba(10,45,42,.08)),url('/api/media/product_matcha')!important;background-size:cover!important;background-position:center!important}
+.product-photo.coffee{background-image:linear-gradient(rgba(10,45,42,.06),rgba(10,45,42,.06)),url('/api/media/product_spanish_latte')!important;background-size:cover!important;background-position:center!important}
+.product-photo.orange{background-image:linear-gradient(rgba(10,45,42,.04),rgba(10,45,42,.04)),url('/api/media/product_cascara_orange')!important;background-size:cover!important;background-position:center!important}
+.product-photo:before,.product-photo:after{display:none!important}
+.reward-card:nth-child(1) .reward-art{background-image:linear-gradient(rgba(10,45,42,.08),rgba(10,45,42,.08)),url('/api/media/reward_free_drink')!important;background-size:cover;background-position:center}
+.reward-card:nth-child(2) .reward-art{background-image:linear-gradient(rgba(10,45,42,.08),rgba(10,45,42,.08)),url('/api/media/reward_secret_menu')!important;background-size:cover;background-position:center}
+.reward-card:nth-child(3) .reward-art{background-image:linear-gradient(rgba(10,45,42,.08),rgba(10,45,42,.08)),url('/api/media/reward_credit')!important;background-size:cover;background-position:center}
+.reward-art:after{display:none!important}
+.brand-story .story-photo{background-image:url('/api/media/brand_story')!important;background-size:cover;background-position:center}
+.brand-story .story-photo img{display:none}
+.club-hero-photo{background-image:url('/api/media/club_hero')!important;background-size:cover;background-position:center}
+.club-hero-photo img{display:none}
+.parrot-note{background-image:url('/api/media/profile_mascot')!important;background-size:cover;background-position:center}
