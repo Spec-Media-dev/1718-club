@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import './brand.css';
 import './mockup.css';
+import './typography.css';
 
 export const metadata: Metadata = {
   title: '1718 CLUB — More than coffee.',
