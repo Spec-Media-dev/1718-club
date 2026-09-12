@@ -1,93 +1,18 @@
 'use client';
-
 import { useState } from 'react';
-import { ArrowRight, Bell, ChevronRight, Gift, Heart, QrCode, Sparkles, UserRound } from 'lucide-react';
-
-const rewards = [
-  { title: 'Signature Coffee', points: '1,500 pts', detail: 'A signature cup, on us.' },
-  { title: '1718 Treat', points: '2,500 pts', detail: 'Choose a coffee or tea favourite.' },
-  { title: 'Club Reward', points: '5,000 pts', detail: 'EGP 500 toward your next visit.' },
-];
-
-export default function Home() {
-  const [tab, setTab] = useState('Home');
-  const [toast, setToast] = useState('');
-  const notify = (message: string) => { setToast(message); window.setTimeout(() => setToast(''), 2200); };
-
-  return (
-    <main className="shell">
-      <div className="ambient ambient-one" />
-      <div className="ambient ambient-two" />
-      <header className="topbar">
-        <div className="brand-lockup">
-          <div className="brand-mark">17<span>8</span></div>
-          <div className="brand-sub">SPECIALTY<br />COFFEE</div>
-        </div>
-        <div className="top-actions">
-          <button className="circle-button" onClick={() => notify('You are all caught up.')} aria-label="Notifications"><Bell size={17}/></button>
-          <button className="circle-button" onClick={() => notify('Your membership profile is ready.')} aria-label="Profile"><UserRound size={17}/></button>
-        </div>
-      </header>
-
-      <section className="hero">
-        <div className="hero-copy">
-          <p className="eyebrow">WELCOME BACK</p>
-          <h1>Your place<br /><em>at 1718.</em></h1>
-          <p className="intro">Coffee, discoveries and a few things we keep just for the Club.</p>
-        </div>
-        <div className="hero-orbit" aria-hidden="true">
-          <div className="parrot-line"><span className="parrot-eye" /></div>
-          <span className="orbit-dot dot-one" /><span className="orbit-dot dot-two" />
-          <span className="hero-number">18</span>
-        </div>
-      </section>
-
-      <section className="member-card">
-        <div className="card-shine" />
-        <div className="card-top"><span>1718 CLUB</span><span className="level">GOLD MEMBER</span></div>
-        <div className="card-center">
-          <div><span className="balance-label">CLUB BALANCE</span><strong>2,840</strong><span className="balance-unit">POINTS</span></div>
-          <button className="card-qr" onClick={() => notify('Membership QR opened.')} aria-label="Show membership QR"><QrCode size={31}/></button>
-        </div>
-        <div className="progress"><div style={{width:'71%'}} /></div>
-        <div className="card-bottom"><span>160 points to your next reward</span><button onClick={() => notify('Membership card opened.')}>VIEW CARD <ChevronRight size={13}/></button></div>
-      </section>
-
-      <section className="feature-product">
-        <div className="product-visual">
-          <div className="sun-glow" />
-          <div className="cup"><div className="cup-logo">17<span>8</span><small>SPECIALTY COFFEE</small></div></div>
-          <div className="branch branch-a" /><div className="branch branch-b" />
-          <div className="mascot-badge">PARROT<br /><small>1718</small></div>
-          <button className="heart" onClick={() => notify('Added to favourites.')} aria-label="Favourite"><Heart size={18}/></button>
-        </div>
-        <div className="product-info">
-          <div><p className="eyebrow">TODAY AT 1718</p><h2>Iced Matcha Latte</h2><p>Cold · Creamy · Made to order</p></div>
-          <button className="round-arrow" onClick={() => notify('Opening Iced Matcha Latte.') }><ArrowRight size={18}/></button>
-        </div>
-      </section>
-
-      <section className="quick-actions">
-        <button onClick={() => notify('Rewards are ready to explore.')}><Gift/><span>Rewards</span></button>
-        <button onClick={() => notify('Secret Menu unlocked for Gold members.')}><Sparkles/><span>Secret Menu</span></button>
-        <button onClick={() => notify('Your personal invite is ready.')}><span className="invite-icon">1718</span><span>Invite</span></button>
-      </section>
-
-      <section className="section-head"><div><p className="eyebrow">CURATED FOR YOU</p><h2>Rewards worth keeping.</h2></div><button onClick={() => setTab('Rewards')}>View all <ArrowRight size={15}/></button></section>
-      <div className="reward-list">
-        {rewards.map((reward, index) => <article className="reward" key={reward.title}><div className="reward-index">0{index + 1}</div><div><h3>{reward.title}</h3><p>{reward.detail}</p></div><strong>{reward.points}</strong></article>)}
-      </div>
-
-      <section className="secret-banner" onClick={() => notify('Secret Menu opened.')}>
-        <div className="secret-art"><span>🦜</span></div>
-        <div className="secret-copy"><p className="eyebrow">GOLD & BLACK ONLY</p><h2>The Secret Menu</h2><p>Drinks the parrot keeps to himself.</p></div>
-        <ArrowRight size={19}/>
-      </section>
-
-      <nav className="nav">
-        {['Home','Rewards','Club','Menu','Profile'].map((item) => <button key={item} className={tab===item?'active':''} onClick={() => setTab(item)}><span>{item}</span></button>)}
-      </nav>
-      {toast && <div className="toast">{toast}</div>}
-    </main>
-  );
-}
+import { Bell, ChevronRight, Coffee, Crown, Gift, Home, MapPin, MoreHorizontal, Package, QrCode, Search, ShoppingBag, Sparkles, Star, X } from 'lucide-react';
+const products=[{name:'Iced Matcha Latte',price:'EGP 120',tag:'NEW',tone:'matcha'},{name:'Spanish Latte',price:'EGP 110',tag:'BEST SELLER',tone:'coffee'},{name:'Cascara Orange',price:'EGP 95',tag:'SIGNATURE',tone:'orange'}];
+const rewards=[{title:'Free Drink on Us',detail:'Your next signature drink is waiting.',points:'1,500',icon:Coffee},{title:'Secret Menu Access',detail:'Exclusive drinks reserved for the Club.',points:'2,000',icon:Sparkles},{title:'EGP 250 Club Credit',detail:'Use it on your next 1718 visit.',points:'3,500',icon:Gift}];
+type Product=typeof products[number];
+export default function Home(){const[tab,setTab]=useState('Home');const[product,setProduct]=useState<Product|null>(null);const[card,setCard]=useState(false);const[toast,setToast]=useState('');const notify=(m:string)=>{setToast(m);window.setTimeout(()=>setToast(''),2200)};const go=(t:string)=>setTab(t);return <main className="app-shell">
+{tab==='Home'&&<><header className="app-header"><div className="wordmark"><b>17</b><i>18</i><span>CLUB</span></div><div className="header-actions"><button className="round-btn" onClick={()=>notify('No new notifications.')}><Bell size={18}/></button><button className="avatar" onClick={()=>go('More')}>M</button></div></header><section className="welcome"><div><p className="micro">GOOD MORNING</p><h1>Mohamed<span>.</span></h1></div><button className="search-btn" onClick={()=>go('Menu')}><Search size={19}/></button></section><section className="club-card" onClick={()=>setCard(true)}><div className="club-card-top"><span>1718 CLUB</span><span className="gold-pill"><Crown size={11}/> GOLD MEMBER</span></div><div className="club-card-body"><div><p>MEMBER</p><strong>Mohamed Hamdou</strong><small># 010 7712 3490</small></div><span className="qr"><QrCode size={31}/></span></div><div className="club-card-bottom"><span>1,240 points</span><span>2 free drinks</span><ChevronRight size={15}/></div></section><section className="stats-row"><button onClick={()=>go('Rewards')}><span className="stat-icon"><Star/></span><span><b>1,240</b><small>Points</small></span><ChevronRight/></button><button onClick={()=>go('Rewards')}><span className="stat-icon"><Gift/></span><span><b>2</b><small>Free drinks</small></span><ChevronRight/></button></section><SectionTitle eyebrow="TODAY AT 1718" title="Made for you" action="See all" onClick={()=>go('Menu')}/><section className="feature-card" onClick={()=>setProduct(products[0])}><div className="feature-copy"><span>NEW</span><h2>Iced<br/><em>Matcha</em></h2><p>A fresh ritual for brighter days.</p><button>Discover <ChevronRight size={15}/></button></div><div className="matcha-glass"><div className="matcha-liquid"/><div className="ice ice1"/><div className="ice ice2"/><div className="cup-logo">17<small>18</small></div></div></section><SectionTitle eyebrow="YOUR FAVORITES" title="Order again" action="Open order" onClick={()=>go('Order')} compact/><div className="product-scroll">{products.map(p=><button className="product-card" key={p.name} onClick={()=>setProduct(p)}><div className={`product-visual ${p.tone}`}><span>17<small>18</small></span></div><div className="product-info"><small>{p.tag}</small><strong>{p.name}</strong><b>{p.price}</b></div><span className="plus">+</span></button>)}</div><section className="parrot-story"><div className="parrot-mark">🦜</div><div><p className="micro">THE 1718 WAY</p><h2>More than coffee.<br/><em>A community.</em></h2><p>Every visit becomes part of your 1718 story.</p></div><button onClick={()=>go('Club')}><ChevronRight/></button></section></>}
+{tab==='Menu'&&<MenuView onProduct={setProduct}/>} {tab==='Order'&&<OrderView onProduct={setProduct}/>} {tab==='Rewards'&&<RewardsView notify={notify}/>} {tab==='Club'&&<ClubView/>} {tab==='More'&&<MoreView onCard={()=>setCard(true)}/>}<nav className="bottom-nav"><Nav active={tab==='Home'} label="Home" icon={Home} onClick={()=>go('Home')}/><Nav active={tab==='Menu'} label="Menu" icon={Coffee} onClick={()=>go('Menu')}/><Nav active={tab==='Order'} label="Order" icon={ShoppingBag} onClick={()=>go('Order')}/><Nav active={tab==='Rewards'} label="Rewards" icon={Gift} onClick={()=>go('Rewards')}/><Nav active={tab==='More'} label="More" icon={MoreHorizontal} onClick={()=>go('More')}/></nav>{card&&<div className="modal-backdrop" onClick={()=>setCard(false)}><div className="card-modal" onClick={e=>e.stopPropagation()}><button className="close" onClick={()=>setCard(false)}><X/></button><div className="big-card"><div className="wordmark light"><b>17</b><i>18</i><span>CLUB</span></div><small>GOLD MEMBER</small><div className="big-qr"><QrCode size={118}/></div><strong>Mohamed Hamdou</strong><span>Scan at the counter</span></div></div></div>}{product&&<ProductSheet product={product} close={()=>setProduct(null)} add={()=>{notify(`${product.name} added to your order.`);setProduct(null)}}/>}{toast&&<div className="toast">{toast}</div>}</main>}
+function SectionTitle({eyebrow,title,action,onClick,compact=false}:{eyebrow:string;title:string;action:string;onClick:()=>void;compact?:boolean}){return <section className={`section-title ${compact?'compact':''}`}><div><p className="micro">{eyebrow}</p><h2>{title}</h2></div>{action&&<button onClick={onClick}>{action}<ChevronRight size={15}/></button>}</section>}
+function Nav({active,label,icon:Icon,onClick}:{active:boolean;label:string;icon:typeof Home;onClick:()=>void}){return <button className={`nav-item ${active?'active':''}`} onClick={onClick}><Icon size={19}/><span>{label}</span></button>}
+function Page({title,eyebrow,subtitle,children}:{title:string;eyebrow:string;subtitle:string;children:React.ReactNode}){return <section className="page"><header className="page-header"><div><p className="micro">{eyebrow}</p><h1>{title}</h1><p>{subtitle}</p></div><button className="round-btn"><Bell size={18}/></button></header>{children}</section>}
+function MenuView({onProduct}:{onProduct:(p:Product)=>void}){return <Page title="Menu" eyebrow="1718 COFFEE" subtitle="Your coffee, your ritual."><div className="chips"><button className="selected">All</button><button>Coffee</button><button>Matcha</button><button>Signatures</button><button>Refreshers</button></div><div className="menu-grid">{products.map(p=><button className="menu-product" key={p.name} onClick={()=>onProduct(p)}><div className={`product-visual ${p.tone}`}><span>17<small>18</small></span></div><small>{p.tag}</small><strong>{p.name}</strong><b>{p.price}</b></button>)}</div></Page>}
+function OrderView({onProduct}:{onProduct:(p:Product)=>void}){return <Page title="Order" eyebrow="YOUR NEXT CUP" subtitle="Freshly roasted. Made to order."><div className="order-toggle"><button className="selected">Pickup</button><button>Delivery</button></div><div className="location-card"><MapPin/><div><small>Pickup from</small><strong>1718 Sheikh Zayed</strong><span>5–10 min · Change</span></div><ChevronRight/></div><SectionTitle eyebrow="FEATURED" title="Start with a favorite" action="" onClick={()=>{}}/><div className="order-grid">{products.map(p=><button key={p.name} className="order-item" onClick={()=>onProduct(p)}><div className={`product-visual ${p.tone}`}><span>17<small>18</small></span></div><strong>{p.name}</strong><b>{p.price}</b><span className="add-circle">+</span></button>)}</div></Page>}
+function RewardsView({notify}:{notify:(m:string)=>void}){return <Page title="Rewards" eyebrow="1718 CLUB" subtitle="A little more with every visit."><div className="points-banner"><div><small>YOUR BALANCE</small><strong>1,240</strong><span>points</span></div><div className="ring"><span>83%</span></div></div><div className="reward-tabs"><button className="selected">Available</button><button>My rewards</button><button>History</button></div><div className="reward-cards">{rewards.map(r=>{const Icon=r.icon;return <article className="reward-card" key={r.title}><div className="reward-icon"><Icon/></div><small>{r.points} POINTS</small><h3>{r.title}</h3><p>{r.detail}</p><button onClick={()=>notify('Reward reserved in your Club account.')}>Redeem <ChevronRight size={15}/></button></article>})}</div></Page>}
+function ClubView(){return <Page title="The Club" eyebrow="1718 CLUB" subtitle="More than coffee. A community."><div className="club-hero"><div className="parrot-large">🦜</div><p>YOUR MEMBERSHIP</p><h2>Gold</h2><span>1,240 points</span></div><div className="tier-list"><div><b>Member</b><span>0 – 1,999 points</span></div><div className="current"><b>Gold</b><span>2,000 – 4,999 points</span><Crown/></div><div><b>Black</b><span>5,000+ points · Invitation</span></div></div><p className="club-note">Priority access, secret menu drinks, member-only events and surprises.</p></Page>}
+function MoreView({onCard}:{onCard:()=>void}){return <Page title="Profile" eyebrow="YOUR 1718" subtitle="Everything in one place."><div className="profile-head"><div className="profile-avatar">M</div><div><h2>Mohamed Hamdou</h2><span>Gold Member · 1,240 points</span></div></div><div className="profile-actions"><button onClick={onCard}><QrCode/><span>My Club Card</span><ChevronRight/></button><button><Package/><span>My Orders</span><ChevronRight/></button><button><Gift/><span>My Rewards</span><ChevronRight/></button><button><Sparkles/><span>Refer a Friend</span><ChevronRight/></button></div><div className="parrot-note"><div>🦜</div><span>Good coffee<br/><em>brings better people.</em></span></div></Page>}
+function ProductSheet({product,close,add}:{product:Product;close:()=>void;add:()=>void}){return <div className="sheet-backdrop" onClick={close}><div className="product-sheet" onClick={e=>e.stopPropagation()}><button className="sheet-close" onClick={close}><X/></button><div className={`sheet-visual product-visual ${product.tone}`}><span>17<small>18</small></span></div><div className="sheet-content"><small>SIGNATURE · 1718</small><h2>{product.name}</h2><p>Balanced, refreshing and made with the 1718 ritual in mind.</p><div className="price-line"><strong>{product.price}</strong><div><button>16 oz</button><button className="selected">24 oz</button></div></div><div className="custom-row"><span>Milk & Creamers</span><button className="selected">Whole</button><button>Oat</button><button>Almond</button></div><button className="primary-btn" onClick={add}>Add to Order <ShoppingBag size={17}/></button></div></div></div>}
