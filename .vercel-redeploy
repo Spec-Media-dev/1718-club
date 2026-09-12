@@ -1,0 +1,1 @@
+Environment variables were added in Vercel; this commit intentionally triggers a fresh production build so the browser-exposed Supabase configuration is embedded at build time.
