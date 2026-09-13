@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '../../../../lib/supabase/server'
 
-export async function GET(_request: Request, { params }: { params: Promise<{ slot: string }> }) {
+export async function GET(request: Request, { params }: { params: Promise<{ slot: string }> }) {
   const { slot } = await params
   const key = decodeURIComponent(slot)
   const supabase = await createClient()
@@ -17,7 +17,12 @@ export async function GET(_request: Request, { params }: { params: Promise<{ slo
   const redirectHeaders = { 'Cache-Control': 'public, max-age=60' }
 
   if (data.public_url) {
-    return NextResponse.redirect(data.public_url, { status: 307, headers: redirectHeaders })
+    // Support both absolute URLs (Supabase Storage) and repo-relative paths
+    // (e.g. /brand/photos/x.jpg) by resolving against the current origin.
+    const target = data.public_url.startsWith('/')
+      ? new URL(data.public_url, request.url).toString()
+      : data.public_url
+    return NextResponse.redirect(target, { status: 307, headers: redirectHeaders })
   }
 
   if (data.storage_path) {
