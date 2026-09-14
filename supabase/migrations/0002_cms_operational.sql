@@ -65,17 +65,17 @@ declare
   v_actor uuid := auth.uid();
 begin
   if tg_op = 'DELETE' then
-    insert into public.audit_logs(actor_id, action, entity_type, entity_id, metadata)
+    insert into public.audit_logs(actor_user_id, action, entity_type, entity_id, metadata)
       values (v_actor, tg_table_name || '.delete', tg_table_name,
-              (to_jsonb(old) ->> 'id'), jsonb_build_object('old', to_jsonb(old)));
+              (to_jsonb(old) ->> 'id'), jsonb_build_object('old', to_jsonb(old)));  -- audit_logs.actor_user_id
     return old;
   elsif tg_op = 'UPDATE' then
-    insert into public.audit_logs(actor_id, action, entity_type, entity_id, metadata)
+    insert into public.audit_logs(actor_user_id, action, entity_type, entity_id, metadata)
       values (v_actor, tg_table_name || '.update', tg_table_name,
               (to_jsonb(new) ->> 'id'), jsonb_build_object('old', to_jsonb(old), 'new', to_jsonb(new)));
     return new;
   else
-    insert into public.audit_logs(actor_id, action, entity_type, entity_id, metadata)
+    insert into public.audit_logs(actor_user_id, action, entity_type, entity_id, metadata)
       values (v_actor, tg_table_name || '.insert', tg_table_name,
               (to_jsonb(new) ->> 'id'), jsonb_build_object('new', to_jsonb(new)));
     return new;
