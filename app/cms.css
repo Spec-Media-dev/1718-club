@@ -1,11 +1,17 @@
 /* Live CMS image slots. The customer UI keeps its built-in artwork as a fallback. */
 .app-shell:before{background-image:linear-gradient(180deg,rgba(0,20,20,.3),rgba(0,15,16,.9)),url('/api/media/splash_hero')!important;background-size:cover!important;background-position:center!important}
-.hero-image{background-image:linear-gradient(100deg,rgba(255,255,255,.12),rgba(255,255,255,0) 58%),url('/api/media/home_matcha')!important;background-size:cover!important;background-position:center!important}
+.hero-image{background-image:linear-gradient(100deg,rgba(247,247,244,.95),rgba(247,247,244,.62) 40%,rgba(247,247,244,0) 64%),url('/api/media/home_matcha')!important;background-size:cover!important;background-position:center!important}
 .hero-image .drink-art{display:none}
+.hero-image:before{display:none!important}
+.hero-copy h2{text-shadow:0 1px 10px rgba(247,247,244,.6)}
 .product-photo.matcha{background-image:linear-gradient(rgba(10,45,42,.08),rgba(10,45,42,.08)),url('/api/media/product_matcha')!important;background-size:cover!important;background-position:center!important}
 .product-photo.coffee{background-image:linear-gradient(rgba(10,45,42,.06),rgba(10,45,42,.06)),url('/api/media/product_spanish_latte')!important;background-size:cover!important;background-position:center!important}
 .product-photo.orange{background-image:linear-gradient(rgba(10,45,42,.04),rgba(10,45,42,.04)),url('/api/media/product_cascara_orange')!important;background-size:cover!important;background-position:center!important}
 .product-photo:before,.product-photo:after,.product-photo .photo-logo{display:none!important}
+.sheet-photo.matcha{background-image:url('/api/media/product_matcha')!important;background-size:cover!important;background-position:center!important}
+.sheet-photo.coffee{background-image:url('/api/media/product_spanish_latte')!important;background-size:cover!important;background-position:center!important}
+.sheet-photo.orange{background-image:url('/api/media/product_cascara_orange')!important;background-size:cover!important;background-position:center!important}
+.sheet-photo:before,.sheet-photo:after,.sheet-photo .photo-logo{display:none!important}
 .reward-card:nth-child(1) .reward-art{background-image:linear-gradient(rgba(10,45,42,.08),rgba(10,45,42,.08)),url('/api/media/reward_free_drink')!important;background-size:cover!important;background-position:center!important}
 .reward-card:nth-child(2) .reward-art{background-image:linear-gradient(rgba(10,45,42,.08),rgba(10,45,42,.08)),url('/api/media/reward_secret_menu')!important;background-size:cover!important;background-position:center!important}
 .reward-card:nth-child(3) .reward-art{background-image:linear-gradient(rgba(10,45,42,.08),rgba(10,45,42,.08)),url('/api/media/reward_credit')!important;background-size:cover!important;background-position:center!important}
