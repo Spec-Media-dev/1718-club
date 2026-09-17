@@ -22,6 +22,13 @@ function useMenu(): Menu | null {
   return m;
 }
 
+// Curated signatures — showcased with the commissioned 1718 branded-cup photography.
+const SIGNATURES = [
+  { img: '/brand/photos/product_matcha.jpg', id: 19, name: 'Iced Matcha Latte', price: 140 },
+  { img: '/brand/photos/product_spanish_latte.jpg', id: 6, name: 'Spanish Latte', price: 145 },
+  { img: '/brand/photos/product_cascara_orange.jpg', id: 118, name: 'Cascara Orange', price: 180 },
+];
+
 const rewards = [
   { title: 'Free Drink on Us', detail: 'Redeem a signature drink on your next visit.', points: '1,500', icon: Coffee, tone: '' },
   { title: 'Secret Menu Access', detail: 'A private selection created for Club members.', points: '2,000', icon: Sparkles, tone: 'dark' },
@@ -61,7 +68,6 @@ export default function Home() {
 function HomeView({ menu, go, notify, setCard, onItem }: { menu: Menu | null; go: (t: string) => void; notify: (m: string) => void; setCard: (v: boolean) => void; onItem: (i: Item) => void }) {
   const items = menu?.items ?? [];
   const hero = items.find(i => /matcha/i.test(i.name) && /latte/i.test(i.name)) ?? items.find(i => i.cat === 2) ?? items[0];
-  const favs = items.filter(i => [1, 2, 3].includes(i.cat)).slice(0, 8);
   const heroName = hero ? splitName(hero.name) : { head: 'Iced', tail: 'Matcha' };
   return <>
     <header className="app-header"><Brand /><div className="header-actions"><button className="icon-btn" onClick={() => notify('No new notifications.')}><Bell size={17} /></button><button className="avatar" onClick={() => go('More')}>MH</button></div></header>
@@ -70,8 +76,8 @@ function HomeView({ menu, go, notify, setCard, onItem }: { menu: Menu | null; go
     <section className="quick-stats"><button onClick={() => go('Rewards')}><Star /><b>1,240</b><span>Points</span></button><button onClick={() => go('Rewards')}><Gift /><b>2</b><span>Free Drinks</span></button><button onClick={() => go('Club')}><Crown /><b>Gold</b><span>Your Tier</span></button></section>
     <SectionTitle eyebrow="TODAY AT 1718" title="Made for you" action="See all" onClick={() => go('Menu')} />
     {hero && <section className="hero-product" onClick={() => onItem(hero)}><div className="hero-image"><div className="hero-copy"><span>SIGNATURE · 1718</span><h2>{heroName.head}{heroName.head && <br />}<em>{heroName.tail}</em></h2><p>{hero.recipe || 'A 1718 signature, crafted with care.'}</p><b>{egp(hero.price)}</b></div></div><button className="round-arrow"><ChevronRight /></button></section>}
-    <SectionTitle eyebrow="YOUR FAVORITES" title="Order again" action="Open menu" onClick={() => go('Menu')} compact />
-    <div className="product-scroll">{favs.map(p => <button className="product-card" key={p.id} onClick={() => onItem(p)}><div className="product-photo" style={photoBg(p.image, 320)} /><div className="product-info"><small>{p.calories ? `${p.calories} CAL` : '1718'}</small><strong>{p.name}</strong><b>{egp(p.price)}</b></div><span className="plus">+</span></button>)}</div>
+    <SectionTitle eyebrow="THE 1718 RITUAL" title="Signatures" action="Full menu" onClick={() => go('Menu')} compact />
+    <div className="signatures">{SIGNATURES.map(s => { const it = items.find(i => i.id === s.id); return <button className="sig-card" key={s.id} onClick={() => it && onItem(it)}><div className="sig-photo" style={{ backgroundImage: `url("${s.img}")` }} /><div className="sig-copy"><small>SIGNATURE</small><strong>{s.name}</strong><b>{egp(s.price)}</b></div></button>; })}</div>
     <section className="brand-story"><div className="story-photo"><img src="/api/media/brand_story" alt="1718 parrot mascot" onError={e => { const t = e.currentTarget; if (!t.src.includes('parrot-hero')) t.src = '/brand/1718-parrot-hero.svg'; }} /></div><div><p className="eyebrow">THE 1718 WAY</p><h2>More than coffee.<br /><em>A community.</em></h2><p>Good coffee brings better people together.</p></div><button onClick={() => go('Club')}><ChevronRight /></button></section>
   </>;
 }

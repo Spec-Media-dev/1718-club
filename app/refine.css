@@ -1,0 +1,141 @@
+/* ─────────────────────────────────────────────────────────────
+   1718 — premium design refinement layer (quiet-luxury hospitality)
+   One radius system · one shadow system · confident type · sparing gold
+   ───────────────────────────────────────────────────────────── */
+:root{
+  --ink:#15302e; --deep:#0e4544; --teal:#0b6462; --cream:#f7f3ec; --paper:#fffdf8;
+  --line:rgba(21,48,46,.08); --hair:rgba(21,48,46,.12); --gold:#bd9760; --muted:#7b847e;
+  --e1:0 6px 18px -12px rgba(18,46,44,.22);
+  --e2:0 14px 34px -20px rgba(18,46,44,.30);
+  --e3:0 30px 60px -28px rgba(8,42,42,.55);
+}
+*{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+
+/* Warm, layered ground instead of flat cream */
+.app-shell{background:
+  radial-gradient(130% 55% at 50% -8%, #fdfbf5 0%, rgba(253,251,245,0) 52%),
+  linear-gradient(180deg,#f7f3ec 0%,#f1eadd 100%)!important;
+  box-shadow:0 0 90px rgba(18,46,44,.10)!important}
+
+/* Eyebrows — uniform tracking + muted gold */
+.eyebrow,.hero-copy>span,.section-title button,.club-card-mid span,.menu-product>small,.reward-copy small,.sheet-content>small{
+  letter-spacing:.2em!important}
+.eyebrow{font-size:9px!important;color:#a5854f!important;font-weight:700!important;margin-bottom:10px!important}
+
+/* Header + welcome */
+.app-header{padding:18px 22px!important}
+.icon-btn,.avatar{width:42px!important;height:42px!important;border:1px solid var(--hair)!important;background:rgba(255,255,255,.72)!important;box-shadow:var(--e1)!important}
+.avatar{background:var(--deep)!important;border:0!important}
+.welcome{padding:24px 22px 22px!important}
+.welcome h1{letter-spacing:-1.6px!important}
+.welcome-sub{font-size:11px!important;color:var(--muted)!important;margin-top:11px!important}
+
+/* Membership card — the signature moment */
+.club-card{margin:0 22px!important;padding:22px 22px 20px!important;border-radius:26px!important;
+  background:linear-gradient(152deg,#116260 0%,#0b4143 58%,#062f31 100%)!important;
+  border:1px solid rgba(189,151,96,.30)!important;box-shadow:var(--e3)!important}
+.club-card-mid{margin:30px 0 22px!important}
+.club-card-bottom{border-top-color:rgba(255,255,255,.14)!important;padding-top:14px!important}
+.mini-qr{background:rgba(255,255,255,.10)!important;border:1px solid rgba(255,255,255,.14)!important}
+.gold-pill{color:#e6c896!important}
+
+/* Quick stats — soft elevated tiles */
+.quick-stats{margin:16px 22px 32px!important;gap:10px!important}
+.quick-stats button{border:1px solid var(--line)!important;background:var(--paper)!important;border-radius:18px!important;padding:15px 13px!important;box-shadow:var(--e1)!important}
+.quick-stats b{font-size:16px!important;letter-spacing:-.3px!important}
+.quick-stats span{font-size:8px!important;letter-spacing:.06em!important}
+
+/* Section headers */
+.section-title{padding:8px 22px 14px!important}
+.section-title.compact{margin-top:26px!important}
+.section-title h2{letter-spacing:-.6px!important}
+.section-title button{color:var(--teal)!important;font-size:9px!important}
+
+/* Content cards — one elevation language */
+.hero-product{margin:0 22px!important;border-radius:26px!important;box-shadow:var(--e2)!important}
+.hero-image{height:270px!important}
+.hero-copy{left:22px!important;top:24px!important;width:52%!important}
+.hero-copy h2{font-size:33px!important;letter-spacing:-1px!important;margin:12px 0 9px!important}
+.hero-copy p{font-size:9.5px!important;line-height:1.5!important;color:#5f6b64!important}
+.hero-copy b{font-size:13px!important}
+.round-arrow{width:40px!important;height:40px!important;left:22px!important;bottom:22px!important;box-shadow:var(--e2)!important}
+
+.product-scroll{padding:0 22px 8px!important;gap:12px!important}
+.product-card{width:164px!important;min-width:164px!important;border:1px solid var(--line)!important;border-radius:22px!important;box-shadow:var(--e1)!important}
+.product-photo{height:132px!important}
+.product-info{padding:12px 13px 15px!important;gap:5px!important}
+.product-info small{color:#a5854f!important}
+.product-info strong{font-size:12px!important}
+.plus,.add-circle{width:28px!important;height:28px!important;box-shadow:var(--e1)!important}
+
+/* Brand story */
+.brand-story{margin:30px 22px 6px!important;border-radius:24px!important;padding:15px!important;background:#efe6d6!important;box-shadow:var(--e1)!important}
+.brand-story h2{font-size:20px!important}
+.story-photo{width:78px!important;height:88px!important;border-radius:18px!important}
+
+/* Pages */
+.page{padding:26px 0 122px!important}
+.page-header{padding:0 22px 22px!important}
+.page-header h1{letter-spacing:-1.4px!important}
+.page-header>div>p:last-child{font-size:11px!important;color:var(--muted)!important;margin-top:11px!important}
+
+/* Search + chips */
+.menu-search{margin:0 22px 16px!important;border-radius:16px!important;padding:13px 15px!important;background:var(--paper)!important;border:1px solid var(--line)!important;box-shadow:var(--e1)!important}
+.menu-search input{font-size:13px!important}
+.chips,.reward-tabs,.order-toggle{padding:0 22px 18px!important;gap:8px!important}
+.chips button,.reward-tabs button,.order-toggle button{border-radius:999px!important;padding:10px 15px!important;font-size:10px!important;border:1px solid var(--hair)!important;background:var(--paper)!important;color:#6d7873!important;white-space:nowrap!important}
+.chips .selected,.reward-tabs .selected,.order-toggle .selected{background:var(--deep)!important;color:#fff!important;border-color:var(--deep)!important;box-shadow:var(--e1)!important}
+
+/* Menu / order grids */
+.menu-grid,.order-grid{gap:14px!important;padding:0 22px!important}
+.menu-product,.order-item{border:1px solid var(--line)!important;border-radius:22px!important;box-shadow:var(--e1)!important;overflow:hidden!important}
+.product-photo.large{height:150px!important}
+.menu-product>small{margin-top:12px!important;color:#a5854f!important}
+.menu-product>strong,.order-item>strong{font-size:12.5px!important;margin-top:6px!important;letter-spacing:-.2px!important}
+.menu-product>b,.order-item>b{font-size:12px!important;color:var(--teal)!important;margin-bottom:15px!important}
+.menu-recipe{margin:4px 12px 0!important}
+
+/* Location card */
+.location-card{margin:0 22px 26px!important;border-radius:18px!important;padding:15px!important;border:1px solid var(--line)!important;box-shadow:var(--e1)!important}
+
+/* Rewards */
+.points-banner{margin:0 22px 18px!important;border-radius:24px!important;padding:22px!important;border:1px solid rgba(189,151,96,.22)!important;box-shadow:var(--e2)!important}
+.reward-cards{padding:0 22px!important;gap:12px!important}
+.reward-card{border:1px solid var(--line)!important;border-radius:22px!important;box-shadow:var(--e1)!important;overflow:hidden!important}
+.reward-copy{padding:17px!important}
+.reward-copy h3{font-size:17px!important}
+.reward-copy button{border-radius:999px!important;padding:9px 13px!important;box-shadow:var(--e1)!important}
+
+/* Club + profile */
+.club-hero{margin:0 22px 18px!important;border-radius:24px!important;box-shadow:var(--e2)!important}
+.tier-list,.profile-actions{margin:0 22px!important;border-radius:20px!important;border:1px solid var(--line)!important;box-shadow:var(--e1)!important}
+.profile-head{margin:0 22px 18px!important;border-radius:22px!important;border:1px solid var(--line)!important;box-shadow:var(--e1)!important}
+.tier-list .current{background:linear-gradient(90deg,#ecd7ab,#f5ecda)!important}
+
+/* Product sheet */
+.product-sheet{border-radius:30px 30px 0 0!important}
+.sheet-photo{height:260px!important}
+.sheet-content{padding:24px 22px 26px!important}
+.sheet-content h2{letter-spacing:-.5px!important;margin:8px 0!important}
+.price-line>strong{font-size:26px!important}
+.primary-btn{border-radius:16px!important;padding:15px!important;box-shadow:var(--e2)!important;letter-spacing:.02em!important}
+
+/* Buttons everywhere get a touch of depth */
+.round-arrow,.plus,.add-circle,.reward-copy button{transition:transform .15s ease}
+
+/* Floating, glassy bottom nav */
+.bottom-nav{background:rgba(255,253,248,.86)!important;backdrop-filter:blur(20px) saturate(1.15)!important;-webkit-backdrop-filter:blur(20px) saturate(1.15)!important;border-top:1px solid var(--line)!important;box-shadow:0 -8px 30px -20px rgba(18,46,44,.4)!important}
+.nav-item{font-size:8px!important;letter-spacing:.04em!important}
+.nav-item.active svg{background:#e7efe9!important}
+
+/* 1718 Signatures — editorial showcase for the commissioned branded-cup photography */
+.signatures{display:flex;gap:14px;overflow:auto;padding:0 22px 6px;scrollbar-width:none}
+.signatures::-webkit-scrollbar{display:none}
+.sig-card{position:relative;flex:0 0 auto;width:210px;height:280px;border-radius:24px;overflow:hidden;border:0;padding:0;text-align:left;box-shadow:var(--e2)}
+.sig-photo{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .5s ease}
+.sig-card:active .sig-photo{transform:scale(1.04)}
+.sig-card:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,32,32,0) 40%,rgba(6,30,30,.72) 100%)}
+.sig-copy{position:absolute;left:16px;right:16px;bottom:15px;z-index:1;color:#fff}
+.sig-copy small{font:700 8px 'InterVar','Inter',sans-serif;letter-spacing:.2em;color:#e6c896}
+.sig-copy strong{display:block;font:500 19px/1.05 'Recoleta',Georgia,serif;margin:5px 0 3px;letter-spacing:-.3px}
+.sig-copy b{font:600 12px 'InterVar','Inter',sans-serif;color:#f2e7d2}
