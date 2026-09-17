@@ -22,3 +22,12 @@
 .club-hero-photo img{display:none}
 .parrot-note{background-image:url('/api/media/profile_mascot')!important;background-size:cover!important;background-position:center!important}
 .parrot-note img{display:none}
+
+/* Real-menu UI */
+.menu-search{margin:0 20px 14px;display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--paper);border-radius:14px;padding:10px 13px;color:#8b938f}
+.menu-search input{flex:1;border:0;background:none;outline:0;font:500 12px 'InterVar','Inter',sans-serif;color:var(--deep)}
+.menu-search input::placeholder{color:#9aa19d}
+.menu-empty{padding:44px 20px;text-align:center;color:#8b918d;font:500 11px 'InterVar','Inter',sans-serif}
+.menu-recipe{margin:3px 12px 0;font:400 8px/1.35 'InterVar','Inter',sans-serif;color:#8a938e;font-style:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.cal-badge{display:inline-flex;align-items:center;gap:4px;font:600 9px 'InterVar','Inter',sans-serif;color:#8e6e44;background:#f3ebdc;border-radius:20px;padding:6px 10px}
+.menu-product>b{margin-bottom:14px}
