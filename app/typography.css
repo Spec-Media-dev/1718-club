@@ -1,4 +1,17 @@
-/* 1718 Club typography: Recoleta headings, Lucida Calligraphy highlights, Inter body */
-body,.app-shell,button,input,textarea,select{font-family:'Inter',Arial,sans-serif!important}
-.welcome h1,.page-header h1,.section-title h2,.hero-copy h2,.brand-story h2,.club-card-mid strong,.points-banner strong,.reward-copy h3,.club-hero h2,.profile-head h2,.big-card strong,.sheet-content h2,.parrot-note span,.join-card h1,.splash-copy h1,.app-shell:before{font-family:'Recoleta','Iowan Old Style','Baskerville',Georgia,serif!important}
-.welcome h1 em,.page-header h1 em,.section-title h2 em,.hero-copy h2 em,.brand-story h2 em,.club-hero h2 em,.reward-copy h3 em,.profile-head h2 em,.sheet-content h2 em,.parrot-note span em,.join-card h1 em,.splash-copy h1 em{font-family:'Lucida Calligraphy','URW Chancery L',cursive!important;font-style:normal!important;font-weight:400!important;letter-spacing:-.02em}
+/* 1718 brand typography — self-hosted brand fonts.
+   Recoleta = headings · Lucida Calligraphy = highlighted word in a heading · Inter = body */
+@font-face{font-family:'Recoleta';src:url('/fonts/recoleta-regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Recoleta';src:url('/fonts/recoleta-medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'Recoleta';src:url('/fonts/recoleta-semibold.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:'Recoleta';src:url('/fonts/recoleta-bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:'Lucida Calligraphy';src:url('/fonts/lucidacalligraphy-regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'InterVar';src:url('/fonts/inter-var.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:swap}
+
+/* Body → Inter */
+body,.app-shell,button,input,textarea,select,.price-line>strong,.app-shell:after{font-family:'InterVar','Inter',system-ui,-apple-system,Arial,sans-serif!important}
+
+/* Headings → Recoleta */
+.welcome h1,.page-header h1,.section-title h2,.feature-copy h2,.hero-copy h2,.brand-story h2,.club-card-mid strong,.points-banner strong,.reward-copy h3,.club-hero h2,.profile-head h2,.big-card strong,.sheet-content h2,.parrot-note span,.join-card h1,.splash-copy h1,.app-shell:before{font-family:'Recoleta','Iowan Old Style','Baskerville',Georgia,serif!important}
+
+/* Highlighted word (an <em> inside a heading) → Lucida Calligraphy */
+.welcome h1 em,.page-header h1 em,.section-title h2 em,.hero-copy h2 em,.brand-story h2 em,.club-hero h2 em,.reward-copy h3 em,.profile-head h2 em,.sheet-content h2 em,.parrot-note span em,.join-card h1 em,.splash-copy h1 em{font-family:'Lucida Calligraphy','URW Chancery L',cursive!important;font-style:normal!important;font-weight:400!important;letter-spacing:-.01em}
