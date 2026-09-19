@@ -13,8 +13,9 @@ import ClubModule from './modules/ClubModule'
 import MembersModule from './modules/MembersModule'
 import CampaignsModule from './modules/CampaignsModule'
 import AuditModule from './modules/AuditModule'
+import InventoryModule from './modules/InventoryModule'
 
-const TABS = ['Media', 'Products', 'Rewards', 'Club', 'Members', 'Campaigns', 'Audit'] as const
+const TABS = ['Media', 'Products', 'Inventory', 'Rewards', 'Club', 'Members', 'Campaigns', 'Audit'] as const
 type Tab = typeof TABS[number]
 
 const MODULES: Record<Tab, (p: ModuleProps) => ReactNode> = {
@@ -25,6 +26,7 @@ const MODULES: Record<Tab, (p: ModuleProps) => ReactNode> = {
   Members: p => <MembersModule {...p} />,
   Campaigns: p => <CampaignsModule {...p} />,
   Audit: p => <AuditModule {...p} />,
+  Inventory: p => <InventoryModule {...p} />,
 }
 
 export default function AdminPage() {
