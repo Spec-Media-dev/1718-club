@@ -7,6 +7,7 @@ import './cms.css';
 import './refine.css';
 import './cine.css';
 import './motion.css';
+import './premium.css';
 
 export const metadata: Metadata = {
   title: '1718 CLUB — More than coffee.',

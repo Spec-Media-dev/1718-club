@@ -1,0 +1,44 @@
+/* ══════════════════════════════════════════════════════════════
+   1718 — premium finishing layer (loaded last)
+   Real frosted-glass depth, device safe-areas, refined gold,
+   confident display type, tidy numerals.
+   ══════════════════════════════════════════════════════════════ */
+
+/* Device safe-areas (notch / home indicator) */
+.bottom-nav{padding-bottom:calc(8px + env(safe-area-inset-bottom))!important}
+.app-header{padding-top:calc(18px + env(safe-area-inset-top))!important}
+.page{padding-top:calc(26px + env(safe-area-inset-top))!important}
+.cine-top{top:calc(14px + env(safe-area-inset-top))}
+.confirm-card,.club-card{position:relative}
+
+/* Realistic frosted-glass depth: soft inner top highlight + hairline */
+.quick-stats button,.menu-product,.order-item,.product-card,.location-card,.reward-card,.tier-list,.profile-head,.profile-actions,.brand-story,.menu-search,.parrot-note,.basket-line,.basket-summary,.pay-opt,.cine-macros,.icon-btn,.chips button,.reward-tabs button,.order-toggle button,.cine-qty{
+  box-shadow:var(--e1), inset 0 1px 0 rgba(255,255,255,.6)!important}
+
+/* Slightly richer, more elegant gold */
+:root{--gold:#a8863c!important}
+.eyebrow,.menu-product>small,.order-item>small,.reward-copy small,.co-label,.cine-label,.product-info small{color:#a8863c!important}
+
+/* Confident display type */
+.welcome h1{font-size:46px!important;letter-spacing:-1.7px!important}
+.page-header h1{font-size:45px!important;letter-spacing:-1.6px!important}
+.section-title h2{font-size:25px!important}
+.hero-copy h2{font-size:37px!important}
+
+/* Numerals: tabular + tight (they render in the serif fallback now) */
+.points-banner strong,.cine-macros b,.sum-row.total b,.confirm-card strong,.quick-stats b,.ring span,.cine-add,.checkout-btn,.basket-info span,.menu-product>b,.order-item>b,.price-line>strong{font-feature-settings:'tnum' 1,'lnum' 1}
+
+/* Quick-stat labels stay on one line */
+.quick-stats b{font-size:17px!important}
+.quick-stats span{font-size:8px!important;white-space:nowrap!important}
+
+/* Scroll-snap for horizontal rails (premium tactile) */
+.signatures,.product-scroll{scroll-snap-type:x proximity}
+.sig-card,.product-card{scroll-snap-align:start}
+
+/* Focus-visible rings for accessibility (keyboard) */
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid rgba(15,90,86,.5);outline-offset:2px}
+
+/* Smooth momentum + no horizontal overflow */
+html,body{overscroll-behavior-y:none}
+.app-shell{overflow-x:hidden!important}
