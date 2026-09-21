@@ -53,7 +53,12 @@ export default function Home() {
     notify(`${qty} × ${it.name} added`);
   };
   const setQty = (id: number, qty: number) => setCart(prev => qty <= 0 ? prev.filter(l => l.item.id !== id) : prev.map(l => l.item.id === id ? { ...l, qty } : l));
-  const placeOrder = (type: string) => { const code = 'C' + Math.random().toString(36).slice(2, 6).toUpperCase(); setOrder({ code, total, type }); setCart([]); setTab('Confirm'); window.scrollTo({ top: 0 }); };
+  const placeOrder = async (payload: { order_type: string; customer_name: string; phone: string; address: string; note: string; payment_method: string }) => {
+    const res = await fetch('/api/orders', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ items: cart.map(l => ({ id: l.item.id, qty: l.qty })), ...payload }) });
+    const data = await res.json();
+    if (!res.ok) { notify(data.error || 'Could not place order.'); throw new Error(data.error || 'order failed'); }
+    setOrder({ code: data.code, total: data.total, type: payload.order_type === 'delivery' ? 'Delivery' : 'Pickup' }); setCart([]); setTab('Confirm'); window.scrollTo({ top: 0 });
+  };
 
   return <main className="app-shell">
     {tab === 'Home' && <HomeView menu={menu} go={go} notify={notify} setCard={setCard} onItem={setItem} />}
@@ -131,31 +136,41 @@ function BasketView({ cart, total, setQty, go, onItem }: { cart: Line[]; total: 
   </Page>;
 }
 
-function CheckoutView({ cart, total, go, place }: { cart: Line[]; total: number; go: (t: string) => void; place: (type: string) => void }) {
+function CheckoutView({ cart, total, go, place }: { cart: Line[]; total: number; go: (t: string) => void; place: (p: { order_type: string; customer_name: string; phone: string; address: string; note: string; payment_method: string }) => Promise<void> }) {
   const [type, setType] = useState<'Pickup' | 'Delivery'>('Pickup');
   const [pay, setPay] = useState<'Cash' | 'Instapay' | 'Card'>('Cash');
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
   const [note, setNote] = useState('');
+  const [placing, setPlacing] = useState(false);
   const delivery = type === 'Delivery' ? 30 : 0;
   const grand = total + delivery;
-  const canPlace = cart.length > 0 && (type === 'Pickup' || address.trim().length > 4) && pay !== 'Card';
+  const canPlace = cart.length > 0 && name.trim().length > 1 && (type === 'Pickup' || address.trim().length > 4) && pay !== 'Card' && !placing;
+  const submit = async () => {
+    setPlacing(true);
+    try { await place({ order_type: type.toLowerCase(), customer_name: name.trim(), phone: phone.trim(), address: address.trim(), note: note.trim(), payment_method: pay.toLowerCase() }); }
+    catch { /* toast shown by parent */ } finally { setPlacing(false); }
+  };
   return <section className="page"><header className="page-header sub"><button className="icon-btn" onClick={() => go('Basket')}><ChevronRight size={17} style={{ transform: 'rotate(180deg)' }} /></button><div><p className="eyebrow">CHECKOUT</p><h1>Almost there</h1></div><span /></header>
     <p className="co-label">HOW WOULD YOU LIKE IT?</p>
     <div className="order-toggle"><button className={type === 'Pickup' ? 'selected' : ''} onClick={() => setType('Pickup')}>Pickup</button><button className={type === 'Delivery' ? 'selected' : ''} onClick={() => setType('Delivery')}>Delivery</button></div>
     {type === 'Pickup'
       ? <div className="location-card"><MapPin /><div><small>Pickup from</small><strong>1718 Coffee &amp; Roastery</strong><span>Ready in 5–10 min</span></div></div>
       : <div className="co-field"><label>Delivery address</label><textarea value={address} onChange={e => setAddress(e.target.value)} placeholder="Building, street, area…" /></div>}
+    <div className="co-field"><label>Your name</label><input value={name} onChange={e => setName(e.target.value)} placeholder="Name for the order" /></div>
+    <div className="co-field"><label>Phone (optional)</label><input value={phone} onChange={e => setPhone(e.target.value)} placeholder="For order updates" inputMode="tel" /></div>
     <div className="co-field"><label>Notes for the barista (optional)</label><input value={note} onChange={e => setNote(e.target.value)} placeholder="e.g. extra hot, oat milk" /></div>
     <p className="co-label">PAYMENT</p>
     <div className="pay-list">
       {(['Cash', 'Instapay', 'Card'] as const).map(p => <button key={p} className={`pay-opt ${pay === p ? 'selected' : ''} ${p === 'Card' ? 'soon' : ''}`} onClick={() => p !== 'Card' && setPay(p)}>
         <span className="pay-dot">{pay === p && <Check size={12} />}</span>
-        <span className="pay-name">{p === 'Cash' ? 'Cash on pickup' : p === 'Instapay' ? 'InstaPay' : 'Visa / Mastercard'}</span>
+        <span className="pay-name">{p === 'Cash' ? (type === 'Delivery' ? 'Cash on delivery' : 'Cash on pickup') : p === 'Instapay' ? 'InstaPay' : 'Visa / Mastercard'}</span>
         {p === 'Card' && <span className="pay-soon">Coming soon</span>}
       </button>)}
     </div>
     <div className="basket-summary"><div className="sum-row"><span>Subtotal</span><b>{egp(total)}</b></div>{delivery > 0 && <div className="sum-row muted"><span>Delivery</span><b>{egp(delivery)}</b></div>}<div className="sum-row total"><span>Total</span><b>{egp(grand)}</b></div></div>
-    <button className="checkout-btn" disabled={!canPlace} onClick={() => place(type)}>Place order · {egp(grand)} <ChevronRight size={17} /></button>
+    <button className="checkout-btn" disabled={!canPlace} onClick={submit}>{placing ? 'Placing order…' : <>Place order · {egp(grand)} <ChevronRight size={17} /></>}</button>
     <p className="co-fine">Card payment (Paymob) is arriving soon. For now, pay with cash or InstaPay.</p>
   </section>;
 }

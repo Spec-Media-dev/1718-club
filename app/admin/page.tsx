@@ -14,11 +14,13 @@ import MembersModule from './modules/MembersModule'
 import CampaignsModule from './modules/CampaignsModule'
 import AuditModule from './modules/AuditModule'
 import InventoryModule from './modules/InventoryModule'
+import OrdersModule from './modules/OrdersModule'
 
-const TABS = ['Media', 'Products', 'Inventory', 'Rewards', 'Club', 'Members', 'Campaigns', 'Audit'] as const
+const TABS = ['Orders', 'Media', 'Products', 'Inventory', 'Rewards', 'Club', 'Members', 'Campaigns', 'Audit'] as const
 type Tab = typeof TABS[number]
 
 const MODULES: Record<Tab, (p: ModuleProps) => ReactNode> = {
+  Orders: p => <OrdersModule {...p} />,
   Media: p => <MediaModule {...p} />,
   Products: p => <ProductsModule {...p} />,
   Rewards: p => <RewardsModule {...p} />,
@@ -37,7 +39,7 @@ export default function AdminPage() {
   const [sent, setSent] = useState(false)
   const [error, setError] = useState('')
   const [notice, setNotice] = useState('')
-  const [tab, setTab] = useState<Tab>('Media')
+  const [tab, setTab] = useState<Tab>('Orders')
 
   useEffect(() => {
     try { setSupabase(createClient()) }
