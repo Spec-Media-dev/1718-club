@@ -57,7 +57,7 @@ export default function Home() {
 
   return <main className="app-shell">
     {tab === 'Home' && <HomeView menu={menu} go={go} notify={notify} setCard={setCard} onItem={setItem} />}
-    {tab === 'Menu' && <MenuView menu={menu} catName={catName} onItem={setItem} />}
+    {tab === 'Menu' && <MenuView menu={menu} catName={catName} onItem={setItem} onQuickAdd={(it) => addToCart(it, 1)} />}
     {tab === 'Basket' && <BasketView cart={cart} total={total} setQty={setQty} go={go} onItem={setItem} />}
     {tab === 'Checkout' && <CheckoutView cart={cart} total={total} go={go} place={placeOrder} />}
     {tab === 'Confirm' && <ConfirmView order={order} go={go} />}
@@ -101,7 +101,7 @@ function SectionTitle({ eyebrow, title, action, onClick, compact = false }: { ey
 function Nav({ active, label, icon: Icon, onClick }: { active: boolean; label: string; icon: LucideIcon; onClick: () => void }) { return <button className={`nav-item ${active ? 'active' : ''}`} onClick={onClick}><Icon size={18} /><span>{label}</span></button>; }
 function Page({ title, eyebrow, subtitle, children }: { title: string; eyebrow: string; subtitle: string; children: ReactNode }) { return <section className="page"><header className="page-header"><div><p className="eyebrow">{eyebrow}</p><h1>{title}</h1><p>{subtitle}</p></div><button className="icon-btn"><Bell size={17} /></button></header>{children}</section>; }
 
-function MenuView({ menu, catName, onItem }: { menu: Menu | null; catName: Map<number, string>; onItem: (i: Item) => void }) {
+function MenuView({ menu, catName, onItem, onQuickAdd }: { menu: Menu | null; catName: Map<number, string>; onItem: (i: Item) => void; onQuickAdd: (i: Item) => void }) {
   const [cat, setCat] = useState<number | 'all'>('all');
   const [q, setQ] = useState('');
   const cats = (menu?.categories ?? []).filter(c => (menu?.items ?? []).some(i => i.cat === c.id));
@@ -110,8 +110,9 @@ function MenuView({ menu, catName, onItem }: { menu: Menu | null; catName: Map<n
   return <Page title="Menu" eyebrow="1718 COFFEE · ROASTERY" subtitle="Roasted in house. Ordered from your table.">
     <div className="menu-search"><Search size={15} /><input value={q} onChange={e => setQ(e.target.value)} placeholder="Search the menu…" /></div>
     <div className="chips"><button className={cat === 'all' ? 'selected' : ''} onClick={() => setCat('all')}>All</button>{cats.map(c => <button key={c.id} className={cat === c.id ? 'selected' : ''} onClick={() => setCat(c.id)}>{c.name}</button>)}</div>
-    {!menu ? <p className="menu-empty">Loading the menu…</p> : items.length === 0 ? <p className="menu-empty">No items match your search.</p> :
-      <div className="menu-grid">{items.map(p => <button className="menu-product" key={p.id} onClick={() => onItem(p)}><div className="product-photo large" style={photoBg(p.image, 400)} />{p.calories != null && <span className="cal-chip"><Flame size={9} /> {p.calories}</span>}<small>{catName.get(p.cat)}</small><strong>{p.name}</strong>{p.recipe && <em className="menu-recipe">{p.recipe}</em>}<b>{egp(p.price)}</b></button>)}</div>}
+    {!menu ? <div className="menu-grid">{Array.from({ length: 6 }).map((_, i) => <div className="skel-card" key={i}><div className="skel-photo" /><div className="skel-line w40" /><div className="skel-line w80" /><div className="skel-line w30" /></div>)}</div>
+      : items.length === 0 ? <p className="menu-empty">No items match your search.</p> :
+      <div className="menu-grid">{items.map(p => <button className="menu-product" key={p.id} onClick={() => onItem(p)}><div className="product-photo large" style={photoBg(p.image, 400)} />{p.calories != null && <span className="cal-chip"><Flame size={9} /> {p.calories}</span>}<span className="menu-add" onClick={e => { e.stopPropagation(); onQuickAdd(p); }} aria-label="Add to basket"><Plus size={15} /></span><small>{catName.get(p.cat)}</small><strong>{p.name}</strong>{p.recipe && <em className="menu-recipe">{p.recipe}</em>}<b>{egp(p.price)}</b></button>)}</div>}
   </Page>;
 }
 

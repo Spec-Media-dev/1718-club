@@ -105,3 +105,14 @@
 
 /* Home hero: clean full-bleed photo (dark bottom scrim from refine) */
 .hero-image{background-image:url('/api/media/home_matcha')!important;background-size:cover!important;background-position:center!important}
+
+/* Quick-add on menu cards */
+.menu-add{position:absolute;right:12px;bottom:12px;z-index:3;width:31px;height:31px;border-radius:50%;background:linear-gradient(150deg,#0f5a56,#083033);color:#fff;display:grid;place-items:center;box-shadow:0 9px 18px -8px rgba(14,65,67,.65);cursor:pointer}
+.menu-add:active{transform:scale(.88)}
+
+/* Menu loading skeletons (glass shimmer) */
+.skel-card{border-radius:22px;overflow:hidden;background:var(--glass);backdrop-filter:var(--blur);border:1px solid var(--glass-line);padding:0 0 15px;box-shadow:var(--e1)}
+.skel-photo{height:150px;background:linear-gradient(90deg,rgba(255,255,255,.25) 25%,rgba(255,255,255,.6) 50%,rgba(255,255,255,.25) 75%);background-size:200% 100%;animation:shimmer 1.4s infinite}
+.skel-line{height:9px;border-radius:6px;margin:11px 12px 0;background:linear-gradient(90deg,rgba(23,58,55,.06) 25%,rgba(23,58,55,.13) 50%,rgba(23,58,55,.06) 75%);background-size:200% 100%;animation:shimmer 1.4s infinite}
+.skel-line.w40{width:42%}.skel-line.w80{width:78%}.skel-line.w30{width:32%}
+@keyframes shimmer{from{background-position:200% 0}to{background-position:-200% 0}}
