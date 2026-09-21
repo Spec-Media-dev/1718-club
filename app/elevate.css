@@ -1,0 +1,82 @@
+/* ══════════════════════════════════════════════════════════════
+   1718 — ELEVATE  ·  warm, tactile, editorial premium pass
+   Loaded LAST. Redefines the design tokens so depth, ground and
+   gold lift everywhere at once, then art-directs the key moments.
+   Light + glass, never dark.
+   ══════════════════════════════════════════════════════════════ */
+
+:root{
+  /* Warmer, richer brand palette */
+  --ink:#12332e!important; --deep:#0b4340!important; --teal:#0a615e!important;
+  --gold:#a97f38!important; --gold-h:#cc9d54!important; --cream:#f4eddf!important;
+  --muted:#6a746d!important; --faint:#9aa39c!important;
+  --line:rgba(18,51,46,.09)!important; --hair:rgba(18,51,46,.14)!important;
+  /* Warmer, more opaque glass so surfaces feel like real frosted material */
+  --glass:rgba(255,252,245,.60)!important; --glass-hi:rgba(255,252,245,.78)!important;
+  --glass-line:rgba(255,255,255,.85)!important;
+  /* Deeper, warmer, dual-layer shadows → cards truly float */
+  --e1:0 14px 30px -20px rgba(16,50,46,.34), 0 3px 8px -4px rgba(16,50,46,.13)!important;
+  --e2:0 28px 56px -26px rgba(16,50,46,.44), 0 6px 15px -8px rgba(16,50,46,.17)!important;
+  --e3:0 46px 84px -32px rgba(7,40,40,.54), 0 10px 24px -10px rgba(7,40,40,.24)!important;
+  --blur:blur(26px) saturate(1.35)!important;
+}
+
+/* ── Warm ivory ground with layered teal + gold atmosphere and fine grain ── */
+html,body{background:#e9e0cd!important}
+.app-shell{
+  background:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/></svg>"),
+    radial-gradient(56% 24% at 4% 0%, rgba(10,97,94,.22), transparent 62%),
+    radial-gradient(60% 27% at 103% 4%, rgba(204,157,84,.34), transparent 58%),
+    radial-gradient(90% 42% at 50% 102%, rgba(10,97,94,.14), transparent 66%),
+    linear-gradient(180deg,#f8f2e6 0%, #f3ecdc 44%, #efe7d3 100%)!important;
+  background-blend-mode:soft-light,normal,normal,normal,normal!important;
+  background-attachment:local!important;
+}
+
+/* ── Type: lift the tiny labels that read "mockup", add air & confidence ── */
+.eyebrow{font-size:10px!important;letter-spacing:.24em!important}
+.welcome{padding:26px 22px 20px!important}
+.welcome-sub{font-size:12px!important;letter-spacing:.01em!important;margin-top:12px!important}
+.section-title{padding:12px 22px 15px!important}
+.section-title.compact{margin-top:34px!important}
+.section-title h2{font-size:27px!important;letter-spacing:-.7px!important}
+.section-title button{font-size:10px!important;letter-spacing:.02em!important}
+
+/* Quick-stats — larger, more legible, warmer */
+.quick-stats{margin:18px 22px 34px!important}
+.quick-stats b{font-size:18px!important}
+.quick-stats span{font-size:9px!important;letter-spacing:.05em!important}
+
+/* Membership card — richer jewel, embossed depth, gold sheen */
+.club-card{border:1px solid rgba(204,157,84,.40)!important;box-shadow:var(--e3), inset 0 1px 0 rgba(255,255,255,.14)!important}
+.club-card .card-noise{opacity:.32!important}
+.club-card-mid strong{letter-spacing:-.2px!important}
+
+/* Home hero — bigger, cinematic, gold hairline + confident type */
+.hero-product{box-shadow:var(--e2)!important}
+.hero-image{height:340px!important}
+.hero-copy h2{font-size:39px!important;letter-spacing:-1.2px!important}
+.hero-copy>span{font-size:9px!important;letter-spacing:.24em!important}
+
+/* Brand-story — more generous, editorial */
+.brand-story{margin:34px 22px 8px!important;padding:16px!important;border-radius:26px!important}
+.brand-story h2{font-size:22px!important;line-height:1.06!important}
+.brand-story p:last-child{font-size:10px!important;line-height:1.5!important;margin-top:6px!important}
+
+/* Menu / rewards headings a touch larger, softer body */
+.page-header h1{letter-spacing:-1.5px!important}
+.reward-copy h3{font-size:18px!important}
+.reward-copy p{font-size:9.5px!important;line-height:1.5!important}
+
+/* Floating nav — deeper frost, softer float */
+.bottom-nav{background:rgba(255,252,245,.66)!important;box-shadow:0 -16px 46px -22px rgba(16,50,46,.4)!important}
+.nav-item{font-size:9px!important}
+
+/* Chips / search — warmer glass, more tap-comfortable */
+.menu-search{padding:14px 16px!important}
+.chips button,.reward-tabs button,.order-toggle button{padding:11px 16px!important;font-size:10.5px!important}
+
+/* Universal frosted inner-highlight for depth on every glass surface */
+.quick-stats button,.menu-product,.order-item,.product-card,.location-card,.reward-card,.tier-list,.profile-head,.profile-actions,.brand-story,.menu-search{
+  box-shadow:var(--e1), inset 0 1px 0 rgba(255,255,255,.7)!important}

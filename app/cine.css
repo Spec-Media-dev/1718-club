@@ -123,15 +123,24 @@
 .menu-product{box-shadow:0 12px 26px -16px rgba(20,60,52,.35)}
 .cal-chip{backdrop-filter:blur(8px)}
 
-/* ── Signature cards — tall cinematic photo rail (restored) ───────── */
-.signatures{display:flex;gap:14px;overflow-x:auto;padding:2px 22px 10px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+/* ── Signature cards — editorial cinematic photo rail ─────────────────
+   overflow-x scroll clips vertical shadow, and scroll-snap pulls the
+   first card past the gutter — so: generous padding for the shadow,
+   scroll-padding so snap respects the 22px inset. */
+.signatures{display:flex;gap:16px;overflow-x:auto;overflow-y:hidden;padding:10px 22px 42px;scroll-padding-left:22px;scroll-padding-right:22px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .signatures::-webkit-scrollbar{display:none}
-.sig-card{position:relative;flex:0 0 auto;width:212px;height:286px;border-radius:26px;overflow:hidden;border:0;padding:0;text-align:left;cursor:pointer;background:#0e3f3d;box-shadow:0 22px 44px -20px rgba(11,54,52,.6),inset 0 1px 0 rgba(255,255,255,.18);isolation:isolate}
-.sig-photo{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.001);transition:transform .6s cubic-bezier(.16,1,.3,1);z-index:0}
+.sig-card{position:relative;flex:0 0 auto;width:238px;height:316px;border-radius:28px;overflow:hidden;border:0;padding:0;text-align:left;cursor:pointer;background:#0e3f3d;scroll-snap-align:start;box-shadow:0 30px 56px -26px rgba(9,44,42,.7),0 8px 20px -10px rgba(9,44,42,.4);isolation:isolate}
+.sig-photo{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.001);transition:transform .7s cubic-bezier(.16,1,.3,1);z-index:0}
 .sig-card:active .sig-photo{transform:scale(1.06)}
-.sig-card::after{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(178deg,rgba(8,40,39,0) 34%,rgba(8,36,35,.28) 58%,rgba(6,28,27,.82) 100%)}
-.sig-card::before{content:'';position:absolute;inset:0;z-index:2;border-radius:26px;border:1px solid rgba(255,255,255,.22);pointer-events:none}
-.sig-copy{position:absolute;left:17px;right:17px;bottom:16px;z-index:3;color:#fff}
-.sig-copy small{display:inline-block;font:700 8.5px/1 'InterVar','Inter',sans-serif;letter-spacing:.22em;color:#e9cf9a;padding:4px 9px;border-radius:999px;background:rgba(255,255,255,.14);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.2)}
-.sig-copy strong{display:block;font:500 21px/1.06 'Recoleta',Georgia,serif;letter-spacing:-.4px;margin:9px 0 4px;text-shadow:0 2px 12px rgba(0,0,0,.35)}
-.sig-copy b{font:600 13px 'InterVar','Inter',sans-serif;color:#f4ead4;font-feature-settings:'tnum' 1,'lnum' 1}
+.sig-card::after{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(177deg,rgba(8,40,39,0) 30%,rgba(8,36,35,.22) 52%,rgba(6,26,25,.86) 100%)}
+.sig-card::before{content:'';position:absolute;inset:0;z-index:2;border-radius:28px;border:1px solid rgba(255,255,255,.24);pointer-events:none}
+/* Editorial index numeral, top-right */
+.sig-card:nth-child(1) .sig-copy::before{content:'01'}
+.sig-card:nth-child(2) .sig-copy::before{content:'02'}
+.sig-card:nth-child(3) .sig-copy::before{content:'03'}
+.sig-copy::before{position:absolute;right:0;bottom:100%;margin-bottom:14px;font:600 12px/1 'InterVar','Inter',sans-serif;letter-spacing:.18em;color:rgba(255,255,255,.62)}
+.sig-copy{position:absolute;left:18px;right:18px;bottom:18px;z-index:3;color:#fff}
+.sig-copy small{display:inline-block;font:700 9px/1 'InterVar','Inter',sans-serif;letter-spacing:.22em;color:#eccf96;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.15);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.22)}
+.sig-copy strong{display:block;font:500 23px/1.05 'Recoleta',Georgia,serif;letter-spacing:-.5px;margin:11px 0 5px;text-shadow:0 2px 14px rgba(0,0,0,.4)}
+.sig-copy b{font:600 14px 'InterVar','Inter',sans-serif;color:#f6ecd6;font-feature-settings:'tnum' 1,'lnum' 1}
+.section-title.compact + .signatures{margin-top:-2px}
