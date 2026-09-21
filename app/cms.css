@@ -1,9 +1,8 @@
 /* Live CMS image slots. The customer UI keeps its built-in artwork as a fallback. */
 .app-shell:before{background-image:linear-gradient(180deg,rgba(0,20,20,.3),rgba(0,15,16,.9)),url('/api/media/splash_hero')!important;background-size:cover!important;background-position:center!important}
-.hero-image{background-image:linear-gradient(100deg,rgba(247,247,244,.95),rgba(247,247,244,.62) 40%,rgba(247,247,244,0) 64%),url('/api/media/home_matcha')!important;background-size:cover!important;background-position:center!important}
+/* Home hero image is set data-driven inline in page.tsx (no cream glow overlay) */
 .hero-image .drink-art{display:none}
 .hero-image:before{display:none!important}
-.hero-copy h2{text-shadow:0 1px 10px rgba(247,247,244,.6)}
 .product-photo.matcha{background-image:linear-gradient(rgba(10,45,42,.08),rgba(10,45,42,.08)),url('/api/media/product_matcha')!important;background-size:cover!important;background-position:center!important}
 .product-photo.coffee{background-image:linear-gradient(rgba(10,45,42,.06),rgba(10,45,42,.06)),url('/api/media/product_spanish_latte')!important;background-size:cover!important;background-position:center!important}
 .product-photo.orange{background-image:linear-gradient(rgba(10,45,42,.04),rgba(10,45,42,.04)),url('/api/media/product_cascara_orange')!important;background-size:cover!important;background-position:center!important}

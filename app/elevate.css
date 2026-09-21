@@ -53,11 +53,13 @@ html,body{background:#e9e0cd!important}
 .club-card .card-noise{opacity:.32!important}
 .club-card-mid strong{letter-spacing:-.2px!important}
 
-/* Home hero — bigger, cinematic, gold hairline + confident type */
+/* Home hero — bigger, cinematic, clean scrim (no glow), confident type */
 .hero-product{box-shadow:var(--e2)!important}
 .hero-image{height:340px!important}
-.hero-copy h2{font-size:39px!important;letter-spacing:-1.2px!important}
-.hero-copy>span{font-size:9px!important;letter-spacing:.24em!important}
+.hero-copy h2{font-size:39px!important;letter-spacing:-1.2px!important;text-shadow:0 2px 18px rgba(6,26,25,.5)!important}
+.hero-copy>span{font-size:9px!important;letter-spacing:.24em!important;text-shadow:0 1px 10px rgba(6,26,25,.5)!important}
+.hero-copy p{text-shadow:0 1px 12px rgba(6,26,25,.55)!important}
+.hero-copy b{text-shadow:0 1px 12px rgba(6,26,25,.6)!important}
 
 /* Brand-story — more generous, editorial */
 .brand-story{margin:34px 22px 8px!important;padding:16px!important;border-radius:26px!important}
@@ -78,5 +80,32 @@ html,body{background:#e9e0cd!important}
 .chips button,.reward-tabs button,.order-toggle button{padding:11px 16px!important;font-size:10.5px!important}
 
 /* Universal frosted inner-highlight for depth on every glass surface */
-.quick-stats button,.menu-product,.order-item,.product-card,.location-card,.reward-card,.tier-list,.profile-head,.profile-actions,.brand-story,.menu-search{
+.quick-stats button,.menu-product,.order-item,.product-card,.location-card,.reward-card,.tier-list,.profile-head,.profile-actions,.brand-story,.menu-search,.perk{
   box-shadow:var(--e1), inset 0 1px 0 rgba(255,255,255,.7)!important}
+
+/* ── NEW Home section · Members enjoy (perks) ─────────────────────── */
+.perks{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:0 22px;margin-bottom:8px}
+.perk{border:1px solid var(--glass-line);background:var(--glass);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border-radius:20px;padding:16px 12px 15px;text-align:left;display:flex;flex-direction:column;color:var(--ink);cursor:pointer}
+.perk svg{width:19px;height:19px;color:var(--gold-h);margin-bottom:12px}
+.perk b{font:600 12px/1.15 'InterVar','Inter',sans-serif;letter-spacing:-.2px}
+.perk span{font-size:8.5px;color:var(--muted);margin-top:4px;line-height:1.32;letter-spacing:.01em}
+
+/* Visit-us location card chevron + soft brand footer */
+.location-card.home>svg:last-child{margin-left:auto!important;width:16px!important;color:var(--faint)!important}
+.home-footer{text-align:center;padding:30px 0 6px;opacity:.55}
+.home-footer span{font:500 30px/1 'Recoleta',Georgia,serif;color:var(--deep);letter-spacing:-1px}
+.home-footer span sup{font-size:19px}
+.home-footer p{font:700 8px 'InterVar','Inter',sans-serif;letter-spacing:.34em;color:var(--gold);margin-top:9px}
+
+/* ── Profile · parrot hero card (full photo, editorial layout) ──────
+   cms.css supplies the mascot photo as the .parrot-note background and
+   hides any inner img — so keep the image (longhands only, never the
+   `background` shorthand) and layer a scrim + copy over it. */
+.parrot-note{position:relative!important;display:block!important;margin:10px 22px 26px!important;height:230px!important;min-height:230px!important;border-radius:26px!important;overflow:hidden!important;background:#0b3a38!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border:0!important;box-shadow:var(--e2)!important;isolation:isolate}
+.parrot-note .parrot-bg{display:block!important;position:absolute!important;top:0!important;left:0!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:74% 30%!important;z-index:0!important;margin:0!important;border-radius:0!important}
+.parrot-scrim{position:absolute!important;top:0!important;left:0!important;width:100%!important;height:100%!important;z-index:1!important;background:linear-gradient(101deg,rgba(5,32,31,.97) 0%,rgba(6,37,36,.82) 34%,rgba(8,42,41,.30) 66%,rgba(8,42,41,0) 100%)!important}
+.parrot-copy{position:absolute!important;top:0!important;left:0!important;width:100%!important;height:100%!important;display:flex!important;flex-direction:column!important;justify-content:flex-end!important;padding:23px 38% 22px 23px!important;z-index:2!important;text-align:left!important;background:transparent!important}
+.parrot-copy small{display:block!important;font:700 9px/1 'InterVar','Inter',sans-serif!important;letter-spacing:.24em!important;color:#eccf96!important;margin:0 0 12px!important}
+.parrot-copy strong{display:block!important;font:500 24px/1.1 'Recoleta',Georgia,serif!important;letter-spacing:-.4px!important;color:#fff!important;text-shadow:0 2px 16px rgba(0,0,0,.42)!important}
+.parrot-copy strong em{font-family:'Lucida Calligraphy','URW Chancery L',cursive!important;font-style:normal!important;font-weight:400!important;color:#eccf96!important;letter-spacing:0!important}
+.parrot-copy span{font:500 10.5px/1.5 'InterVar','Inter',sans-serif!important;color:rgba(255,255,255,.82)!important;margin-top:11px!important}

@@ -104,7 +104,7 @@
 .primary-btn{background:linear-gradient(150deg,#0f5a56,#083033)!important;color:#fff!important;box-shadow:var(--e2)!important}
 
 /* Home hero: clean full-bleed photo (dark bottom scrim from refine) */
-.hero-image{background-image:url('/api/media/home_matcha')!important;background-size:cover!important;background-position:center!important}
+.hero-image{background-color:#e7ede6!important;background-size:cover!important;background-position:center!important}
 
 /* Quick-add on menu cards */
 .menu-add{position:absolute;right:12px;bottom:12px;z-index:3;width:31px;height:31px;border-radius:50%;background:linear-gradient(150deg,#0f5a56,#083033);color:#fff;display:grid;place-items:center;box-shadow:0 9px 18px -8px rgba(14,65,67,.65);cursor:pointer}
@@ -127,9 +127,9 @@
    overflow-x scroll clips vertical shadow, and scroll-snap pulls the
    first card past the gutter — so: generous padding for the shadow,
    scroll-padding so snap respects the 22px inset. */
-.signatures{display:flex;gap:16px;overflow-x:auto;overflow-y:hidden;padding:10px 22px 42px;scroll-padding-left:22px;scroll-padding-right:22px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.signatures{display:flex;gap:16px;overflow-x:auto;overflow-y:visible;padding:12px 22px 56px;scroll-padding-left:22px;scroll-padding-right:22px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .signatures::-webkit-scrollbar{display:none}
-.sig-card{position:relative;flex:0 0 auto;width:238px;height:316px;border-radius:28px;overflow:hidden;border:0;padding:0;text-align:left;cursor:pointer;background:#0e3f3d;scroll-snap-align:start;box-shadow:0 30px 56px -26px rgba(9,44,42,.7),0 8px 20px -10px rgba(9,44,42,.4);isolation:isolate}
+.sig-card{position:relative;flex:0 0 auto;width:238px;height:316px;border-radius:28px;overflow:hidden;border:0;padding:0;text-align:left;cursor:pointer;background:#0e3f3d;scroll-snap-align:start;box-shadow:0 26px 44px -26px rgba(9,44,42,.62),0 8px 18px -10px rgba(9,44,42,.34);isolation:isolate}
 .sig-photo{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.001);transition:transform .7s cubic-bezier(.16,1,.3,1);z-index:0}
 .sig-card:active .sig-photo{transform:scale(1.06)}
 .sig-card::after{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(177deg,rgba(8,40,39,0) 30%,rgba(8,36,35,.22) 52%,rgba(6,26,25,.86) 100%)}
