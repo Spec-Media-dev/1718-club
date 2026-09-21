@@ -116,3 +116,22 @@
 .skel-line{height:9px;border-radius:6px;margin:11px 12px 0;background:linear-gradient(90deg,rgba(23,58,55,.06) 25%,rgba(23,58,55,.13) 50%,rgba(23,58,55,.06) 75%);background-size:200% 100%;animation:shimmer 1.4s infinite}
 .skel-line.w40{width:42%}.skel-line.w80{width:78%}.skel-line.w30{width:32%}
 @keyframes shimmer{from{background-position:200% 0}to{background-position:-200% 0}}
+
+/* ── Menu / product photos: warm branded ground + kill legacy fake-cup shapes ── */
+.product-photo,.sheet-photo{background-color:#e9e3d5!important}
+.product-photo:before,.product-photo:after,.sheet-photo:before,.sheet-photo:after{display:none!important}
+.menu-product{box-shadow:0 12px 26px -16px rgba(20,60,52,.35)}
+.cal-chip{backdrop-filter:blur(8px)}
+
+/* ── Signature cards — tall cinematic photo rail (restored) ───────── */
+.signatures{display:flex;gap:14px;overflow-x:auto;padding:2px 22px 10px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.signatures::-webkit-scrollbar{display:none}
+.sig-card{position:relative;flex:0 0 auto;width:212px;height:286px;border-radius:26px;overflow:hidden;border:0;padding:0;text-align:left;cursor:pointer;background:#0e3f3d;box-shadow:0 22px 44px -20px rgba(11,54,52,.6),inset 0 1px 0 rgba(255,255,255,.18);isolation:isolate}
+.sig-photo{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.001);transition:transform .6s cubic-bezier(.16,1,.3,1);z-index:0}
+.sig-card:active .sig-photo{transform:scale(1.06)}
+.sig-card::after{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(178deg,rgba(8,40,39,0) 34%,rgba(8,36,35,.28) 58%,rgba(6,28,27,.82) 100%)}
+.sig-card::before{content:'';position:absolute;inset:0;z-index:2;border-radius:26px;border:1px solid rgba(255,255,255,.22);pointer-events:none}
+.sig-copy{position:absolute;left:17px;right:17px;bottom:16px;z-index:3;color:#fff}
+.sig-copy small{display:inline-block;font:700 8.5px/1 'InterVar','Inter',sans-serif;letter-spacing:.22em;color:#e9cf9a;padding:4px 9px;border-radius:999px;background:rgba(255,255,255,.14);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.2)}
+.sig-copy strong{display:block;font:500 21px/1.06 'Recoleta',Georgia,serif;letter-spacing:-.4px;margin:9px 0 4px;text-shadow:0 2px 12px rgba(0,0,0,.35)}
+.sig-copy b{font:600 13px 'InterVar','Inter',sans-serif;color:#f4ead4;font-feature-settings:'tnum' 1,'lnum' 1}

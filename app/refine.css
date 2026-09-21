@@ -40,7 +40,6 @@ body{background:#eef1ea!important}
 .avatar{background:linear-gradient(150deg,#0f5a56,#083033)!important;border:0!important;color:#fff!important}
 .welcome{padding:24px 22px 22px!important}
 .welcome h1{letter-spacing:-1.6px!important;color:var(--ink)!important}
-.welcome h1:after{color:var(--ink)!important}
 .welcome-sub{font-size:11px!important;color:var(--muted)!important;margin-top:11px!important}
 
 /* Membership card — brand jewel (stays teal, gold edge) */
